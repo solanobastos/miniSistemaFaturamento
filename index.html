@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meraki Faturamento</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Meraki Faturamento</h1>
+
+    <div class="card">
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label>Convênio</label>
+
+                <select id="convenio">
+
+                    <option>Base Aerea</option>
+                    <option>Policlinica</option>
+                    <option>Judicial</option>
+                    <option>SulAmerica</option>
+                    <option>Particular</option>
+
+                </select>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Mês</label>
+
+                <select id="mes"></select>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Ano</label>
+
+                <select id="ano"></select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Rotina Semanal</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Dia</th>
+                    <th>Hora</th>
+                    <th>Duração</th>
+                    <th>Especialidade</th>
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tabelaRotinas">
+
+            </tbody>
+
+        </table>
+
+        <button id="btnAdicionar">
+
+            + Adicionar Atendimento
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <button id="btnGerar">
+
+            Gerar Ficha
+
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Resultado</h2>
+
+        <div id="resultado">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
