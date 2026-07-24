@@ -1,145 +1,683 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
+/* ===================================================
+   MERAKI OFFICE UI v2
+===================================================*/
 
-body{
+:root {
 
-    background:#f2f5f7;
+  --primary: #14B8A6;
+  --primary-hover: #0F9F90;
 
-}
+  --success: #22C55E;
+  --warning: #eda832;
+  --danger: #d02929;
+  --info: #3B82F6;
+  --purple: #8B5CF6;
 
-.container{
+  --bg: #F4F7FB;
 
-    width:90%;
-    max-width:1200px;
+  --card: #FFFFFF;
 
-    margin:40px auto;
+  --card2: #FAFBFD;
 
-}
+  --table: #F8FAFC;
 
-.card{
+  --text: #1E293B;
 
-    background:white;
+  --text2: #64748B;
 
-    padding:20px;
+  --border: #E2E8F0;
 
-    margin-bottom:20px;
+  --radius: 18px;
 
-    border-radius:8px;
+  --shadow:
+    0 10px 25px rgba(15, 23, 42, .08);
 
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-
-}
-
-h1{
-
-    margin-bottom:20px;
-    color:#0B8C7B;
+  --transition: .25s ease;
 
 }
 
-h2{
+/* ================= DARK ================= */
 
-    margin-bottom:15px;
+body.dark {
 
-}
+  --bg: #111827;
 
-.linha{
+  --card: #1F2937;
 
-    display:flex;
+  --card2: #273548;
 
-    gap:15px;
+  --table: #334155;
 
-}
+  --text: #F8FAFC;
 
-.campo{
+  --text2: #CBD5E1;
 
-    display:flex;
-
-    flex-direction:column;
-
-    flex:1;
-
-    margin-bottom:15px;
+  --border: #475569;
 
 }
 
-label{
+/* ================= RESET ================= */
 
-    margin-bottom:5px;
+* {
 
-    font-weight:bold;
+  margin: 0;
 
-}
+  padding: 0;
 
-input,
-select{
-
-    padding:10px;
+  box-sizing: border-box;
 
 }
 
-table{
+html {
 
-    width:100%;
-
-    border-collapse:collapse;
+  scroll-behavior: smooth;
 
 }
 
-th{
+body {
 
-    background:#0B8C7B;
+  background: var(--bg);
 
-    color:white;
+  color: var(--text);
 
-    padding:10px;
+  font-family:
 
-}
+    "Segoe UI",
 
-td{
+    Inter,
 
-    border:1px solid #ddd;
+    Arial,
 
-    padding:8px;
+    sans-serif;
 
-}
-
-td select{
-
-    width:100%;
+  transition: .35s;
 
 }
 
-button{
+/* ================= CONTAINER ================= */
 
-    margin-top:15px;
+.container {
 
-    padding:10px 20px;
+  max-width: 1450px;
 
-    border:none;
+  margin: auto;
 
-    background:#0B8C7B;
-
-    color:white;
-
-    cursor:pointer;
-
-    border-radius:5px;
+  padding: 35px;
 
 }
 
-button:hover{
+/* ================= TOPO ================= */
 
-    background:#087465;
+.topoSistema {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 35px;
 
 }
 
-.remover{
+.topoSistema h1 {
 
-    background:#c0392b;
+  font-size: 44px;
+
+  color: var(--primary);
+
+  font-weight: 700;
+
+}
+
+.topoSistema p {
+
+  color: var(--text2);
+
+  margin-top: 6px;
+
+  font-size: 17px;
+
+}
+
+/* ================= BOTÃO TEMA ================= */
+
+#btnTema {
+
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 50%;
+
+  border: 1px solid var(--border);
+
+  background: var(--card);
+
+  color: var(--text);
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  box-shadow: var(--shadow);
+
+  transition: var(--transition);
+
+}
+
+#btnTema:hover {
+
+  transform: rotate(20deg);
+
+  background: var(--primary);
+
+  color: white;
+
+}
+
+/* ================= CARDS ================= */
+
+.card {
+
+  background: var(--card);
+
+  border-radius: 22px;
+
+  padding: 28px;
+
+  margin-bottom: 28px;
+
+  border: 1px solid rgba(148, 163, 184, .12);
+
+  box-shadow: var(--shadow);
+
+  transition: var(--transition);
+
+}
+
+.card:hover {
+
+  transform: translateY(-2px);
+
+}
+
+/* ================= TITULOS ================= */
+
+h2 {
+
+  color: var(--primary);
+
+  margin-bottom: 20px;
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+}
+
+.linha {
+
+  display: grid;
+
+  grid-template-columns:
+
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 18px;
+
+}
+
+.campo,
+
+.linhaFormulario {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+label {
+
+  font-weight: 600;
+
+  color: var(--text2);
+
+}
+
+select,
+
+input {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  border: 1px solid var(--border);
+
+  background: var(--card2);
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  transition: .2s;
+
+}
+
+select:hover,
+
+input:hover {
+
+  border-color: var(--primary);
+
+}
+
+select:focus,
+
+input:focus {
+
+  outline: none;
+
+  border-color: var(--primary);
+
+  box-shadow:
+
+    0 0 0 4px rgba(20, 184, 166, .18);
+
+}
+
+/* ===================================================
+   BOTÕES
+===================================================*/
+
+button {
+
+  border: none;
+
+  cursor: pointer;
+
+  transition: .25s;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  padding: 12px 20px;
+
+  font-size: 15px;
+
+}
+
+button:hover {
+
+  transform: translateY(-2px);
+
+}
+
+button:active {
+
+  transform: scale(.97);
+
+}
+
+/* Botões principais */
+
+#btnAdicionar {
+
+  background: var(--success);
+
+  color: white;
+
+}
+
+#btnAdicionar:hover {
+
+  background: #16A34A;
+
+}
+
+#btnGerar {
+
+  background: var(--info);
+
+  color: white;
+
+}
+
+#btnGerar:hover {
+
+  background: #2563EB;
+
+}
+
+#btnSalvarEdicao {
+
+  background: var(--success);
+
+  color: white;
+
+}
+
+/* Botões pequenos */
+
+.btnEditar {
+
+  background: var(--warning);
+
+  width: 42px;
+
+  height: 42px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 0;
+
+  font-size: 17px;
+
+  line-height: 1;
+
+  border-radius: 12px;
+
+}
+
+.btnEditar:hover {
+
+  background: #D97706;
+
+}
+
+.btnExcluir {
+
+  background: var(--danger);
+
+  width: 42px;
+
+  height: 42px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 0;
+
+  font-size: 17px;
+
+  line-height: 1;
+
+  border-radius: 12px;
+
+}
+
+.btnExcluir:hover {
+
+  background: #DC2626;
+
+}
+
+.btnCopiar {
+
+  background: var(--purple);
+
+  color: white;
+
+}
+
+.btnCopiar:hover {
+
+  background: #7C3AED;
+
+}
+
+.btnAdicionarRelatorio {
+
+  background: var(--success);
+
+  color: white;
+
+}
+
+.btnAdicionarRelatorio:hover {
+
+  background: #16A34A;
+
+}
+
+/* ===================================================
+   TABELAS
+===================================================*/
+
+table {
+
+  width: 100%;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  margin-top: 15px;
+
+}
+
+thead {
+
+  background: linear-gradient(90deg,
+
+      var(--primary),
+
+      #2DD4BF);
+
+}
+
+th {
+
+  color: white;
+
+  padding: 18px;
+
+  font-weight: 600;
+
+  text-align: left;
+
+}
+
+tbody {
+
+  background: var(--card);
+
+}
+
+td {
+
+  padding: 16px;
+
+  border-bottom: 1px solid var(--border);
+
+}
+
+tbody tr {
+
+  transition: .18s;
+
+}
+
+tbody tr:nth-child(even) {
+
+  background: var(--table);
+
+}
+
+tbody tr:hover {
+
+  background: rgba(20, 184, 166, .08);
+
+}
+
+body.dark tbody tr:hover {
+
+  background: #374151;
+
+}
+
+.botoesRelatorio {
+
+  display: flex;
+
+  gap: 14px;
+
+  margin-top: 20px;
+
+  flex-wrap: wrap;
+
+}
+
+/* ===================================================
+   MODAL
+===================================================*/
+
+#painelEdicao {
+
+  position: fixed;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: min(560px, 92vw);
+
+  background: var(--card);
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  box-shadow:
+
+    0 30px 70px rgba(0, 0, 0, .35);
+
+  z-index: 9999;
+
+  animation: modal .25s ease;
+
+}
+
+@keyframes modal {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+
+      translate(-50%, -45%) scale(.95);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+
+      translate(-50%, -50%) scale(1);
+
+  }
+
+}
+
+#tituloEdicao {
+
+  font-size: 28px;
+
+  color: var(--primary);
+
+  margin-bottom: 25px;
+
+}
+
+h3 {
+
+  margin-top: 25px;
+
+  color: var(--primary);
+
+}
+
+h4 {
+
+  margin-top: 25px;
+
+  color: var(--text);
+
+}
+
+hr {
+
+  margin: 25px 0;
+
+  border: none;
+
+  border-top: 1px solid var(--border);
+
+}
+
+::-webkit-scrollbar {
+
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+  background: var(--primary);
+
+  border-radius: 20px;
+
+}
+
+::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+@media(max-width:900px) {
+
+  .linha {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  table {
+
+    display: block;
+
+    overflow-x: auto;
+
+  }
+
+  .topoSistema {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+  }
 
 }

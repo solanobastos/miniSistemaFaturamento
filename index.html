@@ -9,49 +9,213 @@
 
     <title>Meraki Faturamento</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>Meraki Faturamento</h1>
+        <div class="topoSistema">
 
-    <div class="card">
+            <div>
 
-        <div class="linha">
+                <h1>Meraki Faturamento</h1>
 
-            <div class="campo">
-
-                <label>Convênio</label>
-
-                <select id="convenio">
-
-                    <option>Base Aerea</option>
-                    <option>Policlinica</option>
-                    <option>Judicial</option>
-                    <option>SulAmerica</option>
-                    <option>Particular</option>
-
-                </select>
+                <p>Módulo de Faturamento • v1.0</p>
 
             </div>
 
-            <div class="campo">
+            <button id="btnTema">
 
-                <label>Mês</label>
+                🌙
 
-                <select id="mes"></select>
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label>Convênio</label>
+
+                    <select id="convenio">
+
+                        <option value="base">Base Aerea</option>
+
+                        <option value="policlinica">Policlinica</option>
+
+                        <option value="judicial">Judicial</option>
+
+                        <option value="sulamerica">SulAmerica</option>
+
+                        <option value="particular">Particular</option>
+
+                        <option value="pacotes">Particular - Pacotes</option>
+
+                    </select>
+
+                </div>
+
+                <div class="campo">
+
+                    <label>Mês</label>
+
+                    <select id="mes"></select>
+
+                </div>
+
+                <div class="campo">
+
+                    <label>Ano</label>
+
+                    <select id="ano"></select>
+
+                </div>
+
+                <div id="configConvenio" style="display:none; margin-top:20px;">
+
+                    <div id="campoPacote" style="display:none; margin-top:10px;">
+
+                        <label>Pacote contratado</label>
+
+                        <select id="pacoteContratado">
+
+                            <option value="1">Pacote 1 - R$ 189,90</option>
+
+                            <option value="2">Pacote 2 - R$ 309,90</option>
+
+                            <option value="3">Pacote 3 - R$ 459,90</option>
+
+                            <option value="4">Pacote 4 - R$ 609,90</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div id="configValoresEspecialidades"></div>
 
             </div>
 
-            <div class="campo">
+        </div>
 
-                <label>Ano</label>
+        <div class="card">
 
-                <select id="ano"></select>
+            <h2>Rotina Semanal</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Dia</th>
+                        <th>Hora</th>
+                        <th>Duração</th>
+                        <th>Especialidade</th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabelaRotinas">
+
+                </tbody>
+
+            </table>
+
+            <button id="btnAdicionar">
+
+                + Adicionar Atendimento
+
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <button id="btnGerar">
+
+                Gerar Ficha
+
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Resultado</h2>
+
+            <div id="resultado">
+
+            </div>
+
+            <div id="painelEdicao" style="display:none; margin-top:20px;">
+
+                <h3 id="tituloEdicao">Novo Atendimento</h3>
+
+                <div class="linhaFormulario">
+
+                    <label>Data</label>
+
+                    <input type="date" id="editarData">
+
+                </div>
+
+                <div class="linhaFormulario" id="grupoHora">
+
+                    <label>Horário</label>
+
+                    <input type="time" id="editarHora">
+
+                </div>
+
+                <div class="linhaFormulario" id="grupoDuracao">
+
+                    <label>Duração</label>
+
+                    <select id="editarDuracao">
+
+                    </select>
+
+                </div>
+
+                <div class="linhaFormulario" id="grupoEspecialidade">
+
+                    <label>Especialidade</label>
+
+                    <select id="editarEspecialidade"></select>
+
+                </div>
+
+                <div class="linhaFormulario" id="grupoValor">
+
+                    <label>Valor</label>
+
+                    <input type="number" id="editarValor" step="0.01" min="0">
+
+                </div>
+
+                <br>
+
+                <button id="btnSalvarEdicao">
+
+                    💾 Salvar
+
+                </button>
+
+                <button onclick="fecharPainelEdicao()">
+
+                    Cancelar
+
+                </button>
 
             </div>
 
@@ -59,64 +223,17 @@
 
     </div>
 
-    <div class="card">
+    <script src="js/config.js"></script>
 
-        <h2>Rotina Semanal</h2>
+    <script src="js/utils.js"></script>
 
-        <table>
+    <script src="js/agenda.js"></script>
 
-            <thead>
+    <script src="js/convenios.js"></script>
 
-                <tr>
+    <script src="js/copiar.js"></script>
 
-                    <th>Dia</th>
-                    <th>Hora</th>
-                    <th>Duração</th>
-                    <th>Especialidade</th>
-                    <th></th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tabelaRotinas">
-
-            </tbody>
-
-        </table>
-
-        <button id="btnAdicionar">
-
-            + Adicionar Atendimento
-
-        </button>
-
-    </div>
-
-    <div class="card">
-
-        <button id="btnGerar">
-
-            Gerar Ficha
-
-        </button>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Resultado</h2>
-
-        <div id="resultado">
-
-        </div>
-
-    </div>
-
-</div>
-
-<script src="script.js"></script>
-
+    <script src="js/script.js"></script>
 </body>
 
 </html>
