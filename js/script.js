@@ -530,8 +530,21 @@ function editarAtendimento(indice) {
 
     }
 
-    document.getElementById("editarDuracao").value =
-        atendimento.duracao;
+    const selectDuracao = document.getElementById("editarDuracao");
+
+    selectDuracao.innerHTML = "";
+
+    CONFIG.DURACOES.forEach(duracao => {
+
+        selectDuracao.innerHTML += `
+        <option value="${duracao}">
+            ${duracao} min
+        </option>
+    `;
+
+    });
+
+    selectDuracao.value = atendimento.duracao;
 
     configurarFormulario(convenio);
 
