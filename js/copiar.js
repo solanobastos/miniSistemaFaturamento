@@ -1,10 +1,10 @@
-async function copiarParticular(){
+async function copiarParticular() {
 
     let texto = "";
 
     let total = 0;
 
-    agendaGerada.forEach(item=>{
+    agendaGerada.forEach(item => {
 
         const valor = valoresParticular[item.especialidade] || 0;
 
@@ -15,7 +15,7 @@ async function copiarParticular(){
             + "\t"
             + item.especialidade
             + "\t"
-            + valor.toFixed(2).replace(".",",")
+            + valor.toFixed(2).replace(".", ",")
             + "\n";
 
     });
@@ -24,7 +24,7 @@ async function copiarParticular(){
 
     texto += "TOTAL\t\t";
 
-    texto += total.toFixed(2).replace(".",",");
+    texto += total.toFixed(2).replace(".", ",");
 
     await navigator.clipboard.writeText(texto);
 
@@ -138,21 +138,28 @@ async function copiarTabela(tipo) {
     alert("Dados copiados com sucesso!");
 }
 
-async function copiarBase(){
+async function copiarBase() {
 
     let texto = "";
 
-    agendaGerada.forEach(item=>{
+    agendaGerada.forEach((item, indice) => {
 
         texto +=
             item.data.toLocaleDateString("pt-BR")
-            + "\t"      // Coluna A
-            + "\t"      // Coluna B (mesclada)
-            + "\t"      // Coluna C
-            + "\t"      // Coluna D (mesclada)
-            + "\t"      // Coluna E
-            + item.especialidade // Coluna F
+            + "\t"      // B
+            + "\t"      // C
+            + "\t"      // D
+            + "\t"      // E
+            + "\t"
+            + item.especialidade // F
             + "\n";
+
+        // A cada 13 atendimentos pula 7 linhas
+        if ((indice + 1) % 13 === 0) {
+
+            texto += "\n".repeat(7);
+
+        }
 
     });
 
