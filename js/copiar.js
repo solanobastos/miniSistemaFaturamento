@@ -8,6 +8,9 @@ async function copiarTabela(tipo) {
         case "policlinica":
             return copiarPoliclinica();
 
+        case "sulamerica":
+            return copiarSulAmerica();
+
         case "judicial":
             return copiarJudicial();
 
@@ -16,7 +19,6 @@ async function copiarTabela(tipo) {
 
         case "pacotes":
             return copiarPacotes();
-
     }
 
 }
@@ -169,5 +171,33 @@ async function copiarJudicial() {
     await navigator.clipboard.writeText(texto);
 
     alert("Dados copiados para Judicial!");
+
+}
+
+async function copiarSulAmerica() {
+
+    let texto = "";
+
+    agendaGerada.forEach((item, indice) => {
+
+        texto +=
+            item.data.toLocaleDateString("pt-BR")
+            + "\t"
+            + item.especialidade
+            + "\n";
+
+        // A cada bloco de 14 atendimentos
+        if ((indice + 1) % 14 === 0) {
+
+            // pula 10 linhas
+            texto += "\n".repeat(9);
+
+        }
+
+    });
+
+    await navigator.clipboard.writeText(texto);
+
+    alert("Dados copiados para SulAmérica!");
 
 }
