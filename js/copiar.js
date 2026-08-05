@@ -76,9 +76,11 @@ async function copiarBase() {
 
 async function copiarParticular() {
 
-    let texto = "";
+    let texto = "Olá, segue valores em aberto sobre o mês passado:\n\n";
 
     let total = 0;
+
+    const resumo = {};
 
     agendaGerada.forEach(item => {
 
@@ -87,25 +89,56 @@ async function copiarParticular() {
         total += valor;
 
         texto +=
-            item.data.toLocaleDateString("pt-BR") + "\t" +
-            item.especialidade + "\t" +
-            valor.toFixed(2).replace(".", ",") + "\n";
+            item.data.toLocaleDateString("pt-BR") +
+            "    " +
+            item.especialidade +
+            "\n";
+
+        if (!resumo[item.especialidade]) {
+
+            resumo[item.especialidade] = {
+                quantidade: 0,
+                valor: valor
+            };
+
+        }
+
+        resumo[item.especialidade].quantidade++;
 
     });
 
     texto += "\n";
-    texto += "TOTAL\t\t";
-    texto += total.toFixed(2).replace(".", ",");
+
+    texto += "Resumo por especialidade:\n";
+
+    for (const especialidade in resumo) {
+
+        const qtd = resumo[especialidade].quantidade;
+
+        const valor = resumo[especialidade].valor;
+
+        texto +=
+            `${especialidade} (${qtd} sessões) = R$ ${(qtd * valor).toFixed(2).replace(".", ",")}\n`;
+
+    }
+
+    texto += "\n";
+
+    texto +=
+        `Valor Total = R$ ${total.toFixed(2).replace(".", ",")}\n\n`;
+
+    texto +=
+        "Chave pix (CNPJ): 36032223000188";
 
     await navigator.clipboard.writeText(texto);
 
-    alert("Dados copiados com sucesso!");
+    alert("Mensagem copiada!");
 
 }
 
 async function copiarPacotes() {
 
-    let texto = "";
+    let texto = "Olá, segue valores em aberto sobre o mês passado:\n\n";
 
     const frequencia = calcularFrequenciaSemanal();
 
@@ -120,38 +153,39 @@ async function copiarPacotes() {
 
     const mensalidade = pacotes[frequencia] || 0;
 
-    const valorAtendimentos = agendaGerada.length * 69.90;
+    const valorSessao = 69.90;
+
+    const valorAtendimentos = agendaGerada.length * valorSessao;
 
     const total = mensalidade + valorAtendimentos;
 
     agendaGerada.forEach(item => {
 
         texto +=
-            item.data.toLocaleDateString("pt-BR") + "\t" +
-            item.especialidade + "\t" +
-            "69,90\n";
+            item.data.toLocaleDateString("pt-BR") +
+            "    " +
+            item.especialidade +
+            "\n";
 
     });
 
     texto += "\n";
 
     texto +=
-        "Mensalidade\t\t" +
-        mensalidade.toFixed(2).replace(".", ",") +
-        "\n";
+        `Mensalidade = R$ ${mensalidade.toFixed(2).replace(".", ",")}\n`;
 
     texto +=
-        "Atendimentos\t\t" +
-        valorAtendimentos.toFixed(2).replace(".", ",") +
-        "\n";
+        `Atendimentos = R$ ${valorAtendimentos.toFixed(2).replace(".", ",")}\n`;
 
     texto +=
-        "TOTAL\t\t" +
-        total.toFixed(2).replace(".", ",");
+        `Valor Total = R$ ${total.toFixed(2).replace(".", ",")}\n\n`;
+
+    texto +=
+        "Chave pix (CNPJ): 36032223000188";
 
     await navigator.clipboard.writeText(texto);
 
-    alert("Dados copiados com sucesso!");
+    alert("Mensagem copiada!");
 
 }
 
@@ -174,7 +208,7 @@ async function copiarJudicial() {
 
 }
 
-async function copiarSulAmerica() {
+async function copiarSulAmerica() { 
 
     let texto = "";
 
